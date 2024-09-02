@@ -18,18 +18,19 @@ jobs:
           ruby-version: 3.2.2
           bundler-cache: true
 
-      - name: Install Ruby gems
+      - name: Install Ruby Gems
         run: bundle install --jobs 2 --retry 3
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.15
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20.8.0
           cache: 'pnpm'
-
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 8.15
 
       - name: Install PNPM dependencies
         run: pnpm install --network-concurrency 2 --fetch-retries 3
