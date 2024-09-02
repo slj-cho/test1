@@ -1,0 +1,19 @@
+pre-commit:
+  parallel: true
+  commands:
+    haml:
+      glob: '*.haml'
+      run: bundle exec haml-lint {staged_files} --auto-correct --fail-level error && git add {staged_files}
+    scss/css:
+      glob: '*.{scss,css}'
+      run: pnpm stylelint {staged_files} --fix && git add {staged_files}
+    js:
+      glob: '*.js'
+      run: pnpm eslint {staged_files} --fix && git add {staged_files}
+    ruby:
+      glob: '*.rb'
+      exclude: 'db/schema.rb'
+      run: bundle exec rubocop {staged_files} --autocorrect --parallel && git add {staged_files}
+    html/json/yaml/yml:
+      glob: '*.{html,json,yaml,yml}'
+      run: pnpm prettier {staged_files} --write && git add {staged_files}
