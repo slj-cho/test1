@@ -9,7 +9,7 @@
     "stylelint:all": "pnpm stylelint 'app/assets/stylesheets/**/*.scss'",
     "prettier": "prettier --write --ignore-unknown",
     "prettier:all": "pnpm prettier .",
-    "postinstall": "lefthook install"
+    "postinstall": "bundle exec lefthook install"
   },
   "devDependencies": {
     "eslint": "^8.52.0",
